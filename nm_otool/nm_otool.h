@@ -31,5 +31,6 @@
 #include "libft/libft.h"
 
 void ft_nmmapping(int fd);
+void ft_nm_handle64(char *map_ptr);
 
 #endif
