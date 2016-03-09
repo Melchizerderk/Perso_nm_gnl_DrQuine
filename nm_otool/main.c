@@ -55,7 +55,7 @@ void ft_nm(char *line)
 		fd = open(filename, O_RDONLY);
 		if (fd == -1)
 			write(1, PERMERROR, 34);
-		ft_nmprint(fd);
+		ft_nmmapping(fd);
 	}
 }
 
