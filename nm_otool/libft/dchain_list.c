@@ -6,7 +6,7 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/09/30 12:07:46 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/10/25 18:05:21 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/11 19:26:44 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,37 @@ t_list	*putfront_elemd(t_list *new_list, void *data)
 	new_elem->next = new_list;
 	new_elem->prev = NULL;
 	return (new_elem);
+}
+
+t_list	*putafterbefore_elemd(t_list *list, void *data, int i)
+{
+	t_list *temp;
+	
+	if (i == 1)
+	{
+		if (list->next == NULL)
+			list->next = create_elemd(list, data);
+		else
+		{
+			temp = list->next;
+			list->next = create_elemd(list, data);
+			temp->prev = list->next;
+			list = list->next;
+			list->next = temp;
+		}
+	}
+	else if (i == -1)
+	{
+		if (list->prev == NULL)
+			list->prev = putfront_elemd(list, data);
+		else
+		{
+			temp = list->prev;
+			list->prev = create_elemd(temp, data);
+			temp->next = list->prev;
+			temp = temp->next;
+			temp->prev = temp;
+		}
+	}
+	return (list);
 }

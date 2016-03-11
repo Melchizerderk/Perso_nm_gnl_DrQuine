@@ -6,7 +6,7 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 19:28:34 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/01/24 15:35:49 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/11 19:01:19 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_list	*putback_elem(t_list *new_list, void *data);
 t_list	*putfront_elem(t_list *new_list, void *data);
 t_list	*putback_elemd(t_list *new_list, void *data);
 t_list	*putfront_elemd(t_list *new_list, void *data);
+t_list	*putafterbefore_elemd(t_list *new_list, void *data, int i);
 
 int		get_next_line(int const fd, char **line);
 

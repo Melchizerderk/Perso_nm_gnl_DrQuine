@@ -6,12 +6,12 @@
 #    By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/22 10:11:47 by bcrespin          #+#    #+#              #
-#    Updated: 2016/02/07 14:11:48 by bcrespin         ###   ########.fr        #
+#    Updated: 2016/03/11 13:19:48 by bcrespin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
-CFLAGS=
+CFLAGS= -Wall -Werror -Wextra
 NAME=libft.a
 SRC=ft_toupper.c ft_tolower.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 	ft_isascii.c ft_isprint.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
