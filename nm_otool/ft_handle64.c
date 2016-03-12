@@ -20,38 +20,34 @@ char *ft_convert(int n_value)
 t_list	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_list *lst_sym)
 {
 	int i;
+	int d;
+	char *tdata;
 	t_list *tmp;
 
-	i = 0;	
+	i = 0;
+	tdata = NULL;
 	while (i < nsyms)
 	{
-		if (i == 0)
-			lst_sym = putback_elemd(lst_sym, ft_itoa(i));
-		else
-		{
-			tmp = lst_sym;
-			while (tmp != NULL)
-			{
-				if (ft_strcmp((strtable + array[ft_atoi(tmp->data)].n_un.n_strx), (strtable + array[i].n_un.n_strx)) <= 0)
-				{
-					if (tmp->next != NULL)
-					{
-						if (ft_strcmp((strtable + array[ft_atoi(tmp->next->data)].n_un.n_strx), \
-									(strtable + array[i].n_un.n_strx)) >= 0)
-							putafterbefore_elemd(tmp->next, ft_itoa(i), 1);
-					}
-					putafterbefore_elemd(tmp, ft_itoa(i), 1);
-					break ;
-				}
-				else
-				{
-					putafterbefore_elemd(tmp, ft_itoa(i), -1);
-					break ;
-				}
-				tmp = tmp->next;
-			}
-		}
+		lst_sym = putbackelemd(lst_sym, ft_itoa(i));
 		i++;
+	}
+	while (d = 0)
+	{
+		tmp = lst_sym;
+		i = 0;
+		d = 1;
+		while (i < nsyms)
+		{
+			if (ft_strcmp(strtable + array[ft_atoi(tmp->data)], strtable + array[ft_atoi(tmp->next->data)]) > 0)
+			{
+				d = 0;
+				tdata = ft_strdup(tmp->data);
+				tmp->data = ft_strcpy(tmp->next->data);
+				tmp->next->data = ft_strcpy(tdata);
+				free(tdata);
+			}
+			i++;	
+		}
 	}
 	return (lst_sym);
 }
@@ -66,7 +62,7 @@ void print_symb(int nsyms, int symoff, int stroff, char *map_ptr)
         array = (void *)map_ptr + symoff;
         strtable = (void *)map_ptr + stroff;
         i = 0;
-		lst_sym = ft_sort(nsyms, strtable, array, lst_sym);
+	lst_sym = ft_sort(nsyms, strtable, array, lst_sym);
         while (lst_sym != NULL)
         {
 			printf("%s\n", lst_sym->data);
