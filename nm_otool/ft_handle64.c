@@ -14,7 +14,25 @@
 
 char *ft_convert(int n_value)
 {
- 	return NULL;
+	int 	r;
+	char	*v_string;
+	t_list	conv_lst;	
+
+	while (n_value != 0)
+	{
+		n_value = n_value / 16;
+		r = n_value % 16;
+		r = r * 16;
+		r = putfront_elemd(conv_lst, ft_itoa(r));
+	}
+	while (conv_lst != NULL)
+	{
+		if (conv_lst->ft_atoi(data) > 9)
+			conv_lst->data = conv_lst->(data + 23);
+		v_string = strjoin(v_string, conv_lst->data);
+		conv_lst = conv_lst->next;
+	}
+ 	return (v_string);
 }
 
 t_list	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_list *lst_sym)
@@ -65,6 +83,7 @@ void print_symb(int nsyms, int symoff, int stroff, char *map_ptr)
 	lst_sym = ft_sort(nsyms, strtable, array, lst_sym);
         while (lst_sym != NULL)
         {
+		ft_putstr(ft_convert(strtable + array[lst_sym->data].n_un.n_strx));
 			printf("%s\n", lst_sym->data);
 			ft_putstr(strtable + array[ft_atoi(lst_sym->data)].n_un.n_strx); //nom du flag en 3e
 		//a tester
