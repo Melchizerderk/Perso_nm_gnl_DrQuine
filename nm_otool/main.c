@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:03:42 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/11 13:21:08 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:14:03 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void ft_nm(char *arg)
 {
-	char 	*filename;
 	int		fd;
 
 	if (arg == NULL)	

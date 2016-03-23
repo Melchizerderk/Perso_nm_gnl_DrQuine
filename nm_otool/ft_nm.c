@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:49:38 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/11 13:23:47 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:13:49 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void ft_nmprint(char *map_ptr)
 {
-	int m_number;
+	unsigned int m_number;
 
-	m_number = *(int *) map_ptr;
+	m_number = *(unsigned int *) map_ptr;
 	if (m_number == MH_MAGIC_64)
 	{
 		ft_nm_handle64(map_ptr);

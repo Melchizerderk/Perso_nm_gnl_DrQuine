@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:07:18 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/11 13:23:04 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:22:40 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 #define ERROR2 "Invalid command, check your syntax\n"
 #define PERMERROR "Invalid right or non existant file\n"
 #define MUNMAP_ERR "Munmap Failed\n"
-
-#define PROMPT "$> "
-#define MAP_LEN 2
+#define DEFAULT_N_VALUE	"0000000100000000"
 
 #include <sys/types.h>
 #include <sys/stat.h>
