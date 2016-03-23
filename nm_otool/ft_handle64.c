@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:17:58 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 16:28:08 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/23 18:15:14 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char *ft_convert_hexa(char *str)
 	return (str);
 }
 
-char *ft_convert(int n_value)
+char *ft_convert(int n_value, int filetype)
 {
 	int 	r;
 	int		i;
@@ -44,7 +44,10 @@ char *ft_convert(int n_value)
 
 	i = 0;
 	conv_lst = NULL;
-	v_string = ft_strdup(DEFAULT_N_VALUE);
+	if (filetype == 1)
+		v_string = ft_strdup(DEFAULT_N_VALUE);
+	else if (filetype == 2)
+		v_string = ft_strdup(S_DEFAULT_N_VALUE);
 	while (n_value != 0)
 	{
 		r = n_value % 16;
@@ -103,22 +106,36 @@ t_list	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_list *lst_s
 	return (lst_sym);
 }
 
-void print_symb(int nsyms, int symoff, int stroff, char *map_ptr)
+void print_symb(t_datamacho data, char *map_ptr, int filetype)
 {
         char                    *strtable;
         struct  nlist_64        *array;
 		t_list					*lst_sym;
 
-        array = (void *)map_ptr + symoff;
-        strtable = (void *)map_ptr + stroff;
+        array = (void *)map_ptr + data.sym->symoff;
+        strtable = (void *)map_ptr + data.sym->stroff;
 		lst_sym = NULL;
-		lst_sym = ft_sort(nsyms, strtable, array, lst_sym);
+		lst_sym = ft_sort(data.sym->nsyms, strtable, array, lst_sym);
         while (lst_sym != NULL)
         {
 			if (ft_strcmp(strtable + array[ft_atoi(lst_sym->data)].n_type, "header") == 0)
 			{
-				ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value));
+				ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, filetype));
 				write(1, " T ", 3);
+			}
+			else if (filetype == 2)
+			{
+				if (ft_strcmp(strtable + array[ft_atoi(lst_sym->data)].n_type, "header") == 0 || \
+						ft_atoi(lst_sym->data) == 0)
+				{
+					ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, filetype));
+					write(1, " T ", 3);
+				}
+				else
+				{
+					write(1, BLANK, 16);
+					write(1, " U ", 3);
+				}
 			}
 			else
 			{
@@ -128,9 +145,7 @@ void print_symb(int nsyms, int symoff, int stroff, char *map_ptr)
 			ft_putstr(strtable + array[ft_atoi(lst_sym->data)].n_un.n_strx); //nom du flag en 3e
 		//a tester
 			write(1, "\n", 1);
-	/*		ft_putstr(strtable + array[i].n_sect); //numero de section en 1er
-			write(1, " ", 1);
-			ft_putstr(strtable + array[i].n_desc); //a voir pas sur
+		/*	ft_putstr(strtable + array[i].n_desc); //a voir pas sur
 		*///	write(1, " ", 1);
 		//	printf("%llx\n", array[i].n_value);
 		//	ft_putnbr(array[i].n_value); //a voir pas sur
@@ -139,28 +154,25 @@ void print_symb(int nsyms, int symoff, int stroff, char *map_ptr)
 		}
 }
 
-void ft_nm_handle64(char *map_ptr)
+void ft_nm_handle64(char *map_ptr, int filetype)
 {
-        int                     nbcmds;
-        int                     i;
-        struct mach_header_64   *header;
-        struct load_command     *lc;
-        struct symtab_command   *sym;
+        int			nbcmds;
+        int			i;
+		t_datamacho	data;
 
         i = 0;
-        header = (struct mach_header_64 *) map_ptr;
-        nbcmds = header->ncmds;
-        lc = (void *)map_ptr + sizeof(*header);
+        data.header = (struct mach_header_64 *) map_ptr;
+        nbcmds = data.header->ncmds;
+        data.lc = (void *)map_ptr + sizeof(*(data.header));
         while (i < nbcmds)
         {
-                if (lc->cmd == LC_SYMTAB)
+                if (data.lc->cmd == LC_SYMTAB)
                 {
-                        sym = (struct symtab_command *) lc;
-                        print_symb(sym->nsyms, sym->symoff, \
-                                sym->stroff, map_ptr);
+                        data.sym = (struct symtab_command *) data.lc;
+						print_symb(data, map_ptr, filetype);
                         break;
                 }
-                lc = (void *)lc + lc->cmdsize;
+                data.lc = (void *)data.lc + data.lc->cmdsize;
                 i++;
         }
 }

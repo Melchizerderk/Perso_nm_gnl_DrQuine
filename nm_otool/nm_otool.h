@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:07:18 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 16:26:05 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/23 17:50:39 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define PERMERROR "Invalid right or non existant file\n"
 #define MUNMAP_ERR "Munmap Failed\n"
 #define DEFAULT_N_VALUE	"0000000100000000"
+#define S_DEFAULT_N_VALUE "0000000000000000"
 #define BLANK "                "
 
 #include <sys/types.h>
@@ -29,7 +30,14 @@
 
 #include "libft/libft.h"
 
-void ft_nmmapping(int fd);
-void ft_nm_handle64(char *map_ptr);
+void ft_nmmapping(int fd, int filetype);
+void ft_nm_handle64(char *map_ptr, int filetype);
+
+typedef struct 	s_datamacho {
+				
+	struct mach_header_64	*header;
+	struct load_command		*lc;
+	struct symtab_command	*sym;
+}				t_datamacho;
 
 #endif
