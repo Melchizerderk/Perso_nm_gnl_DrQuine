@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:17:58 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 16:08:21 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:10:38 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ t_list	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_list *lst_s
 	while (d == 0)
 	{
 		tmp = lst_sym;
-		i = 0;
 		d = 1;
-		while (i < nsyms)
+		while (tmp->next != NULL)
 		{
 			if (ft_strcmp(strtable + array[ft_atoi(tmp->data)].n_un.n_strx, \
 						strtable + array[ft_atoi(tmp->next->data)].n_un.n_strx) > 0)
@@ -97,7 +96,7 @@ t_list	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_list *lst_s
 				tmp->next->data = ft_strcpy(tmp->next->data, tdata);
 				free(tdata);
 			}
-			i++;	
+			tmp = tmp->next;
 		}
 	}
 	tmp = lst_sym;
