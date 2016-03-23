@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:17:58 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 16:10:38 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:28:08 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,20 @@ void print_symb(int nsyms, int symoff, int stroff, char *map_ptr)
 		lst_sym = ft_sort(nsyms, strtable, array, lst_sym);
         while (lst_sym != NULL)
         {
-			printf("%llx\n", array[ft_atoi(lst_sym->data)].n_value);
-			ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value));
-			write(1, "  ", 2);
+			if (ft_strcmp(strtable + array[ft_atoi(lst_sym->data)].n_type, "header") == 0)
+			{
+				ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value));
+				write(1, " T ", 3);
+			}
+			else
+			{
+				write(1, BLANK, 16);
+				write(1, " U ", 3);
+			}
 			ft_putstr(strtable + array[ft_atoi(lst_sym->data)].n_un.n_strx); //nom du flag en 3e
 		//a tester
 			write(1, "\n", 1);
-		//	ft_putstr(strtable + array[i].n_type); //type de flag (T,U etc) en 2e
-		/*	write(1, " ", 1);
-			ft_putstr(strtable + array[i].n_sect); //numero de section en 1er
+	/*		ft_putstr(strtable + array[i].n_sect); //numero de section en 1er
 			write(1, " ", 1);
 			ft_putstr(strtable + array[i].n_desc); //a voir pas sur
 		*///	write(1, " ", 1);
