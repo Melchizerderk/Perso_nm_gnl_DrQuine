@@ -6,13 +6,13 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:49:38 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 17:43:54 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:22:07 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm_otool.h"
 
-void ft_nmprint(char *map_ptr, int filetype)
+void ft_nmprint(char *map_ptr, int filetype, char *path)
 {
 	unsigned int m_number;
 
@@ -23,10 +23,17 @@ void ft_nmprint(char *map_ptr, int filetype)
 		//fichier de 64 bits
 		//faut-il gerer le 32?
 	}
+	else
+	{
+		ft_putstr(FILETYPE_ERRORP1);
+		ft_putstr(path);
+		ft_putstr(FILETYPE_ERRORP2);
+		write(1, "\n", 1);
+	}
 }
 
 
-void ft_nmmapping(int fd, int filetype)
+void ft_nmmapping(int fd, int filetype, char *path)
 {
 	char *map_ptr;
 	struct stat buf;
@@ -37,7 +44,7 @@ void ft_nmmapping(int fd, int filetype)
 		if ((map_ptr = mmap(0, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) \
 				!= MAP_FAILED)
 		{
-			ft_nmprint(map_ptr, filetype);
+			ft_nmprint(map_ptr, filetype, path);
 			if (munmap(map_ptr, buf.st_size) < 0)
 				ft_putstr(MUNMAP_ERR);
 		}

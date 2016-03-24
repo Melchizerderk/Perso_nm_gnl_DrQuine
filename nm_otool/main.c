@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:03:42 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 17:49:27 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:22:42 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void ft_nm(char *arg)
 		if ((fd = open("a.out", O_RDONLY)) == -1)
 			write(1, ERROR1, 100);
 		else
-			ft_nmmapping(fd, 1);
+			ft_nmmapping(fd, 1, NULL);
 	}
 	else
 	{
 		if ((fd = open(arg, O_RDONLY)) == -1)
 			write(1, PERMERROR, 34);
 		else
-			ft_nmmapping(fd, 2);
+			ft_nmmapping(fd, 2, arg);
 	}
 }
 

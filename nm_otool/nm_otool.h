@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:07:18 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/23 17:50:39 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:21:42 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #define MUNMAP_ERR "Munmap Failed\n"
 #define DEFAULT_N_VALUE	"0000000100000000"
 #define S_DEFAULT_N_VALUE "0000000000000000"
+#define FILETYPE_ERRORP1 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm: "
+#define FILETYPE_ERRORP2 " The file was not recognized as a valid object file."
 #define BLANK "                "
 
 #include <sys/types.h>
@@ -30,8 +32,9 @@
 
 #include "libft/libft.h"
 
-void ft_nmmapping(int fd, int filetype);
-void ft_nm_handle64(char *map_ptr, int filetype);
+void 	ft_nmmapping(int fd, int filetype, char *path);
+void 	ft_nm_handle64(char *map_ptr, int filetype);
+char	*ft_convert(int n_value, int filetype);
 
 typedef struct 	s_datamacho {
 				
