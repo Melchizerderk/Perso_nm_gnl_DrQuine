@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 14:04:44 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/24 14:49:43 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:03:24 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ char	*ft_convert(int n_value, int filetype)
 	char *v_string;
 
 	v_string = NULL;
-	if (filetype == 1)
+	if (filetype == 2)
 		v_string = ft_strdup(DEFAULT_N_VALUE);
-	else if (filetype == 2)
+	else if (filetype == 1)
 		v_string = ft_strdup(S_DEFAULT_N_VALUE);
 	v_string = ft_sub_convert(v_string, n_value);
 	return (v_string);
