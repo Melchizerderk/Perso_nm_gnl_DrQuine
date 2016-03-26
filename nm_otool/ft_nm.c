@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:49:38 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/24 18:12:56 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/26 12:50:19 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void ft_nmprint(char *map_ptr, char *path)
 		//fichier de 64 bits
 		//faut-il gerer le 32?
 	}
-	printf("%d\n", MH_DYLIB);
-	if (header->filetype == MH_DYLIB)
-		printf("lib\n");
 	else
 	{
 		ft_putstr(FILETYPE_ERRORP1);

@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:17:58 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/24 18:12:54 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/26 13:04:26 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@ void	ft_print_o(char *strtbl, struct nlist_64 *array, t_list *lst_sym, int ft)
 {
 
 	if (ft_strcmp(strtbl + array[ft_atoi(lst_sym->data)].n_type, "header") == 0 || \
-			ft_atoi(lst_sym->data) == 0)
+			array[ft_atoi(lst_sym->data)].n_sect == 1)
 	{
 		ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, ft));
 		write(1, " T ", 3);
+	}
+	else if (array[ft_atoi(lst_sym->data)].n_sect == 2)
+	{
+		ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, ft));
+		write(1, " b ", 3);
 	}
 	else
 	{
