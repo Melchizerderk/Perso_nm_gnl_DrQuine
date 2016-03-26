@@ -6,17 +6,17 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:17:58 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/26 13:04:26 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/26 16:13:36 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm_otool.h"
 
-void	ft_print_aout(char *strtbl, struct nlist_64 *array, t_list *lst_sym, int ft)
+void	ft_print_aout(t_datamacho data, t_list *lst_sym, int ft, int ostype)
 {
-	if (ft_strcmp(strtbl + array[ft_atoi(lst_sym->data)].n_type, "header") == 0)
+	if (ft_strcmp(data.strtbl + data.array[ft_atoi(lst_sym->data)].n_type, "header") == 0)
 	{
-		ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, ft));
+		ft_putstr(ft_convert(data.array[ft_atoi(lst_sym->data)].n_value, ft, ostype));
 		write(1, " T ", 3);
 	}
 	else
@@ -26,18 +26,18 @@ void	ft_print_aout(char *strtbl, struct nlist_64 *array, t_list *lst_sym, int ft
 	}
 }
 
-void	ft_print_o(char *strtbl, struct nlist_64 *array, t_list *lst_sym, int ft)
+void	ft_print_o(t_datamacho data, t_list *lst_sym, int ft, int ostype)
 {
 
-	if (ft_strcmp(strtbl + array[ft_atoi(lst_sym->data)].n_type, "header") == 0 || \
-			array[ft_atoi(lst_sym->data)].n_sect == 1)
+	if (ft_strcmp(data.strtbl + data.array[ft_atoi(lst_sym->data)].n_type, "header") == 0 || \
+			data.array[ft_atoi(lst_sym->data)].n_sect == 1)
 	{
-		ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, ft));
+		ft_putstr(ft_convert(data.array[ft_atoi(lst_sym->data)].n_value, ft, ostype));
 		write(1, " T ", 3);
 	}
-	else if (array[ft_atoi(lst_sym->data)].n_sect == 2)
+	else if (data.array[ft_atoi(lst_sym->data)].n_sect == 2)
 	{
-		ft_putstr(ft_convert(array[ft_atoi(lst_sym->data)].n_value, ft));
+		ft_putstr(ft_convert(data.array[ft_atoi(lst_sym->data)].n_value, ft, ostype));
 		write(1, " b ", 3);
 	}
 	else
@@ -47,22 +47,20 @@ void	ft_print_o(char *strtbl, struct nlist_64 *array, t_list *lst_sym, int ft)
 	}
 }
 
-void print_symb(t_datamacho data, char *map_ptr, int filetype)
+void print_symb(t_datamacho data, char *map_ptr, int filetype, int ostype)
 {
-        char                    *strtable;
-        struct  nlist_64        *array;
 		t_list					*lst_sym;
 
-        array = (void *)map_ptr + data.sym->symoff;
-        strtable = (void *)map_ptr + data.sym->stroff;
+        data.array = (void *)map_ptr + data.sym->symoff;
+        data.strtable = (void *)map_ptr + data.sym->stroff;
 		lst_sym = NULL;
-		lst_sym = ft_sort(data.sym->nsyms, strtable, array, lst_sym);
+		lst_sym = ft_sort(data.sym->nsyms, data.strtable, data.array, lst_sym);
         while (lst_sym != NULL)
         {
 			if (filetype == 2)
-				ft_print_aout(strtable, array, lst_sym, filetype);
+				ft_print_aout(data, lst_sym, filetype, ostype);
 			else if (filetype == 1)
-				ft_print_o(strtable, array, lst_sym, filetype);
+				ft_print_o(data, lst_sym, filetype, ostype);
 			ft_putstr(strtable + array[ft_atoi(lst_sym->data)].n_un.n_strx); //nom du flag en 3e
 		//a tester
 			write(1, "\n", 1);
@@ -75,24 +73,22 @@ void print_symb(t_datamacho data, char *map_ptr, int filetype)
 		}
 }
 
-void ft_nm_handle64(char *map_ptr)
+void ft_nm_handle64(char *map_ptr, int ostype)
 {
         int			nbcmds;
         int			i;
-		int			filetype;
 		t_datamacho	data;
 
         i = 0;
         data.header = (struct mach_header_64 *) map_ptr;
         nbcmds = data.header->ncmds;
-		filetype = data.header->filetype;
         data.lc = (void *)map_ptr + sizeof(*(data.header));
         while (i < nbcmds)
         {
                 if (data.lc->cmd == LC_SYMTAB)
                 {
                         data.sym = (struct symtab_command *) data.lc;
-						print_symb(data, map_ptr, filetype);
+						print_symb(data, map_ptr, data.header->filetype, ostype);
                         break;
                 }
                 data.lc = (void *)data.lc + data.lc->cmdsize;

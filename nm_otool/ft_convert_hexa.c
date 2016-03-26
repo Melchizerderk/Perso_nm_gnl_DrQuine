@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 14:04:44 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/24 16:03:24 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/26 16:14:13 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_sub_convert(char *v_string, int n_value)
 	return (v_string);
 }
 
-char	*ft_convert(int n_value, int filetype)
+char	*ft_convert(int n_value, int filetype, int ostype)
 {
 	char *v_string;
 

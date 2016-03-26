@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:07:18 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/24 17:22:54 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/26 16:13:34 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@
 #include <stdio.h>
 #include <mach-o/loader.h>
 #include <mach-o/nlist.h>
+#include <mach-o/ranlib.h>
 
 #include "libft/libft.h"
 
 void 	ft_nmmapping(int fd, char *path);
-void 	ft_nm_handle64(char *map_ptr);
-char	*ft_convert(int n_value, int filetype);
+void 	ft_nm_handle64(char *map_ptr, int ostype);
+char	*ft_convert(int n_value, int filetype, int ostype);
 t_list	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_list *lst_sym);
 
 typedef struct	s_datamacho {
@@ -42,6 +43,8 @@ typedef struct	s_datamacho {
 	struct mach_header_64	*header;
 	struct load_command		*lc;
 	struct symtab_command	*sym;
+	char					*strtable;
+	struct nlist_64			*array;
 }				t_datamacho;
 
 #endif
