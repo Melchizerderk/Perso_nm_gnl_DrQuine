@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:49:38 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/26 16:07:25 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:50:42 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,14 @@
 void ft_nmprint(char *map_ptr, char *path)
 {
 	unsigned int 			m_number;
-	struct ranlib			*tlib;
 
-	tlib = (struct ranlib *)map_ptr;
 	m_number = *(unsigned int *) map_ptr;
 	if (m_number == MH_MAGIC_64)
-		ft_nm_handle64(map_ptr, 1);
-	else if (m_number == MG_MAGIC)
-		ft_nm_handle64(map_ptr, 2);
-	else if ()
+		ft_nm_handle64(map_ptr);
+	else if (m_number == ARMAG)
 	{
 		printf("test\n");
+		//ft_nm_handle64(map_ptr);
 	}
 	else
 	{
