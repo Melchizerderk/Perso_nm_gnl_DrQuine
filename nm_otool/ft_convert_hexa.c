@@ -6,29 +6,33 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/24 14:04:44 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/30 16:48:34 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/31 15:06:47 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm_otool.h"
 
-char	ft_convert_hexa(int n)
+char	*ft_convert_hexa(int n)
 {
-	char 	value;
+	char 	*value;
 
-	if (n == 10)
-		value = 'a';
-	if (n == 11)
-		value = 'b';
-	if (n == 12)
-		value = 'c';
-	if (n == 13)
-		value = 'd';
-	if (n == 14)
-		value = 'e';
-	if (n == 15)
-		value = 'f';
-	return (value);
+	if ((value = malloc(sizeof(char) * 1)))
+	{
+		if (n == 10)
+			value = "a";
+		if (n == 11)
+			value = "b";
+		if (n == 12)
+			value = "c";
+		if (n == 13)
+			value = "d";
+		if (n == 14)
+			value = "e";
+		if (n == 15)
+			value = "f";
+		return (value);
+	}
+	return (NULL);
 }
 
 char	*ft_sub_convert(char *v_string, int n_value)
@@ -51,7 +55,7 @@ char	*ft_sub_convert(char *v_string, int n_value)
 	while (conv_lst != NULL)
 	{
 		if (conv_lst->data > 9)
-			v_string = ft_strjoin(v_string, ft_itoa(ft_convert_hexa(conv_lst->data)));
+			v_string = ft_strjoin(v_string, ft_convert_hexa(conv_lst->data));
 		else if (conv_lst->data == 0)
 			v_string = ft_strjoin(v_string, "0");
 		else

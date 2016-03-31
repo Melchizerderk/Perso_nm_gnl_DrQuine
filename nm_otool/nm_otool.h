@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:07:18 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/30 16:40:01 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/31 16:51:50 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 #define FILETYPE_ERRORP1 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm: "
 #define FILETYPE_ERRORP2 " The file was not recognized as a valid object file."
 #define BLANK "                "
-#define DYLD "dyld_stub_binder"
+#define DYSB "dyld_stub_binder"
+#define DARWIN "___darwin_fd_isset"
+#define MH "__mh_execute_header"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -51,11 +53,12 @@ typedef struct 	s_listnmo {
 
 }				t_listnmo;
 
-t_listnmo	*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_listnmo *lst_sym);
+t_listnmo		*ft_sort(int nsyms, char *strtable, struct nlist_64 *array, t_listnmo *lst_sym);
 void 		ft_nmmapping(int fd, char *path);
 void 		ft_nm_handle64(char *map_ptr);
 char		*ft_convert(int n_value, int filetype);
 t_listnmo	*put_elem_back(t_listnmo *new_list, int data);
 t_listnmo	*put_elem_front(t_listnmo *new_list, int data);
+char		ft_ntype_value(uint8_t ntype, uint8_t n_sect);
 
 #endif

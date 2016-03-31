@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 13:49:38 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/30 16:50:42 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/31 17:13:38 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 void ft_nmprint(char *map_ptr, char *path)
 {
 	unsigned int 			m_number;
+	char					*s_number;
 
 	m_number = *(unsigned int *) map_ptr;
+	s_number = (char *)map_ptr;
 	if (m_number == MH_MAGIC_64)
 		ft_nm_handle64(map_ptr);
-	else if (m_number == ARMAG)
-	{
-		printf("test\n");
-		//ft_nm_handle64(map_ptr);
-	}
+	else if (ft_strnequ(s_number, ARMAG, SARMAG))
+		ft_nm_handleAr(map_ptr);
 	else
 	{
 		ft_putstr(FILETYPE_ERRORP1);
@@ -32,7 +31,6 @@ void ft_nmprint(char *map_ptr, char *path)
 		write(1, "\n", 1);
 	}
 }
-
 
 void ft_nmmapping(int fd, char *path)
 {

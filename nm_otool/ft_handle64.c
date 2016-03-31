@@ -6,7 +6,7 @@
 /*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:17:58 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/03/30 16:48:54 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/03/31 16:23:51 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,37 @@
 
 void	ft_print_exec(t_datamacho data, t_listnmo *lst_sym, int ft)
 {
-	if ((ft_strncmp(data.strtable + \
-				data.array[lst_sym->data].n_un.n_strx, "_", 1) == 0 \
-			&& ft_strcmp(data.strtable + data.array[lst_sym->data].n_un.n_strx, \
-				data.strtable + data.array[lst_sym->prev->data].n_un.n_strx) != 0) 
-			|| ft_strcmp(data.strtable + data.array[lst_sym->data].n_un.n_strx, DYLD) == 0)
+	if (data.array[lst_sym->data].n_sect == NO_SECT)
 	{
-	//printf("%d : %s\n", data.array[lst_sym->data].n_sect, data.strtable + data.array[lst_sym->data].n_type);
-		if (ft_strcmp(data.strtable + data.array[lst_sym->data].n_type, "header") == 0 \
-		|| data.array[lst_sym->data].n_sect == 1)
-		{
-			ft_putstr(ft_convert(data.array[lst_sym->data].n_value, ft));
-			write(1, " T ", 3);
-		}
-		else
-		{
-			write(1, BLANK, 16);
-			write(1, " U ", 3);
-		}
-		ft_putstr(data.strtable + data.array[lst_sym->data].n_un.n_strx);
-		write(1, "\n", 1);
+		write(1, BLANK, 16);
+		write(1, " U ", 3);
 	}
+	else
+	{
+		ft_putstr(ft_convert(data.array[lst_sym->data].n_value, ft));
+		write(1, " ", 1);
+		ft_putchar(ft_ntype_value(data.array[lst_sym->data].n_type, \
+				data.array[lst_sym->data].n_sect));
+		write(1, " ", 1);
+	}
+	ft_putstr(data.strtable + data.array[lst_sym->data].n_un.n_strx);
+	write(1, "\n", 1);
 }
 
 void	ft_print_o(t_datamacho data, t_listnmo *lst_sym, int ft)
 {
-	if (data.array[lst_sym->data].n_sect == 1)
-	{
-		ft_putstr(ft_convert(data.array[lst_sym->data].n_value, ft));
-		write(1, " T ", 3);
-	}
-	else if (data.array[lst_sym->data].n_sect == 2)
-	{
-		ft_putstr(ft_convert(data.array[lst_sym->data].n_value, ft));
-		write(1, " b ", 3);
-	}
-	else
+	if (data.array[lst_sym->data].n_sect == NO_SECT)
 	{
 		write(1, BLANK, 16);
 		write(1, " U ", 3);
+	}
+	else
+	{
+		ft_putstr(ft_convert(data.array[lst_sym->data].n_value, ft));
+		write(1, " ", 1);
+		ft_putchar(ft_ntype_value(data.array[lst_sym->data].n_type, \
+				data.array[lst_sym->data].n_sect));
+		write(1, " ", 1);
 	}
 	ft_putstr(data.strtable + data.array[lst_sym->data].n_un.n_strx); //nom du flag en 3e
 	write(1, "\n", 1);
