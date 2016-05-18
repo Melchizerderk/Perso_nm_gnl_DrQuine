@@ -4,7 +4,7 @@
 #include <unistd.h>
 int main(int ac, char **av){
 ac+=0;char buf[10];char cmd[255];char ex[10];
-int i = 5;
+int i = 3;
 if (i > 0){
 if(strcmp(av[0], "./Sully") == 0){i++;}
 i--;snprintf(buf, sizeof(buf), "Sully_%i.c", i);
