@@ -1,4 +1,4 @@
-#define BUFF_SIZE 5
+#define BUFF_SIZE 10
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
