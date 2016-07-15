@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFF_SIZE 50
+#define BUFF_SIZE 2
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>

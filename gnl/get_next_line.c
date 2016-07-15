@@ -12,19 +12,6 @@
 
 #include "get_next_line.h"
 
-int ft_findchar(char *str, char c)
-{
-	int i;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i + 1);
-      i++;
-	}
-	return (-1);
-}
-
 char *ft_keepreading(const int fd, int *i, int **readreturn)
 {
 	char *temp;
@@ -33,6 +20,8 @@ char *ft_keepreading(const int fd, int *i, int **readreturn)
 	temp = malloc(sizeof(char) * BUFF_SIZE);
 	buf = malloc(sizeof(char) * BUFF_SIZE);
 	**readreturn = read(fd, buf, BUFF_SIZE);
+	if (**readreturn == -1 || **readreturn == 0)
+		return (NULL);
 	*i = ft_findchar(buf, '\n');
 	while (*i == -1)
 	{
@@ -41,7 +30,6 @@ char *ft_keepreading(const int fd, int *i, int **readreturn)
 		*i = ft_findchar(buf, '\n');
 	}
 	free(temp);
-	printf("%d\n", *i);
 	return (buf);
 }
 
@@ -72,11 +60,12 @@ char *ft_read(const int fd, char **savedread, int readstatus, int *readreturn)
 {
 	char	*buf;
 	int	i;
-	int d;
 
 	if (readstatus == 0)
 	{
 		buf = ft_strdup(ft_keepreading(fd, &i, &readreturn));
+		if (buf == NULL)
+			return (NULL);
 		*savedread = ft_tosaveornot(&buf, i, *savedread);
 	}
 	if (readstatus == 1)
@@ -85,6 +74,8 @@ char *ft_read(const int fd, char **savedread, int readstatus, int *readreturn)
 		if (i == -1)
 		{
 			buf = ft_strdup(ft_keepreading(fd, &i, &readreturn));
+			if (buf == NULL)
+				return (NULL);
 			buf = ft_strjoin(*savedread, buf);
 			*savedread = ft_tosaveornot(&buf, i, *savedread);
 		}
@@ -102,8 +93,10 @@ int get_next_line(const int fd, char **line)
 {
 	static char *savedread;
 	int readstatus;
-	int readreturn;	
+	int readreturn;
+	int d;
 	
+	d = 0;
 	if (!savedread)
 		readstatus = 0;
 	else if (ft_strlen(savedread) < BUFF_SIZE)
@@ -112,7 +105,9 @@ int get_next_line(const int fd, char **line)
 		readstatus = 1;
 	}
 	*line =	ft_read(fd, &savedread, readstatus, &readreturn);
-	if (readreturn > 0 || ft_strlen(savedread) != 0)
+	if (savedread)
+		d = ft_strlen(savedread);
+	if (readreturn > 0 || d != 0)
 		return (1);
 	else if (readreturn == -1)
 		return (-1);
