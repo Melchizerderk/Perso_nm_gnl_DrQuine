@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/13 14:48:51 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/07/13 15:37:52 by bcrespin         ###   ########.fr       */
+/*   Created: 2013/11/26 15:03:19 by bcrespin          #+#    #+#             */
+/*   Updated: 2013/12/02 16:42:50 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFF_SIZE 2
 #include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "libft/libft.h"
-#include <stdio.h>
 
-int get_next_line(const int fd, char **line);
+void	ft_memdel(void **ap)
+{
+	if (!(*ap))
+	{
+		free(*ap);
+		*ap = NULL;
+	}
+}

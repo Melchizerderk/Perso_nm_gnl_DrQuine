@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcnttoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/13 14:48:51 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/07/13 15:37:52 by bcrespin         ###   ########.fr       */
+/*   Created: 2013/12/22 17:20:02 by bcrespin          #+#    #+#             */
+/*   Updated: 2013/12/29 20:45:22 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFF_SIZE 2
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#include "libft.h"
 
-int get_next_line(const int fd, char **line);
+int		ft_strcnttoc(char *s, char c)
+{
+	int i;
+
+	i = 0;
+	while (*s != '\0')
+	{
+		if (*s == c)
+			s++;
+		if (*s != c)
+		{
+			i++;
+			s++;
+		}
+	}
+	return (i);
+}

@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcrespin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/13 14:48:51 by bcrespin          #+#    #+#             */
-/*   Updated: 2016/07/13 15:37:52 by bcrespin         ###   ########.fr       */
+/*   Created: 2013/11/23 15:43:20 by bcrespin          #+#    #+#             */
+/*   Updated: 2014/02/03 17:53:46 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define BUFF_SIZE 2
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#include "libft.h"
 
-int get_next_line(const int fd, char **line);
+int ft_strcmp(const char *s1, const char *s2)
+{
+	if (s1 == NULL || s2 == NULL)
+		return (-1);
+	while (*s1 != '\0' || *s2 != '\0')
+	{
+		if (*s1 != *s2)
+		{
+			return (*s1 - *s2);
+		}
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
