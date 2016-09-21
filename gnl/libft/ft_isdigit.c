@@ -6,13 +6,13 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 19:22:34 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/05/13 17:41:33 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:01:58 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if ((c >= '0' && c <= '9') || (c >= 0 && c <= 9))
 		return (1);

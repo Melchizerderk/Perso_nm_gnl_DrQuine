@@ -6,13 +6,13 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/23 18:38:35 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/05/13 17:44:38 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:02:17 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int resul;
 	int nega;

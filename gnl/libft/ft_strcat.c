@@ -6,13 +6,13 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 16:40:10 by bcrespin          #+#    #+#             */
-/*   Updated: 2013/12/29 15:24:39 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 13:59:40 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strcat(char *s1, const char *s2)
+char	*ft_strcat(char *s1, const char *s2)
 {
 	char	*stemp;
 

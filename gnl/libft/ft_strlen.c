@@ -6,11 +6,11 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 18:47:06 by bcrespin          #+#    #+#             */
-/*   Updated: 2013/12/17 18:47:09 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 13:56:08 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char	*s1)
+int	ft_strlen(char *s1)
 {
 	int	i;
 

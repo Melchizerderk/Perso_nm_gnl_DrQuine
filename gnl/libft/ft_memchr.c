@@ -6,14 +6,14 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 19:18:36 by bcrespin          #+#    #+#             */
-/*   Updated: 2013/12/24 13:50:36 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:01:27 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	char *stemp;
 

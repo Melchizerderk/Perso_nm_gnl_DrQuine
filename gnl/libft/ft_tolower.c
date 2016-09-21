@@ -6,13 +6,13 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 19:05:24 by bcrespin          #+#    #+#             */
-/*   Updated: 2013/12/24 13:56:30 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 13:57:05 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tolower (int c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 	{

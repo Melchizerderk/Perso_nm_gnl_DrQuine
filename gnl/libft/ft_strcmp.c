@@ -6,13 +6,13 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/23 15:43:20 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/02/03 17:53:46 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 13:59:06 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
 		return (-1);

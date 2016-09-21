@@ -6,14 +6,14 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 16:57:59 by bcrespin          #+#    #+#             */
-/*   Updated: 2013/12/24 14:15:26 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:01:39 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-void *ft_memccpy(void *s1, const void *s2, int c, size_t n)
+void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
 {
 	while (n > 0)
 	{

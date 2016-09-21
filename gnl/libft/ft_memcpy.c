@@ -6,14 +6,14 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 16:00:17 by bcrespin          #+#    #+#             */
-/*   Updated: 2013/12/24 13:51:10 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:00:59 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-void *ft_memcpy(void *s1, const void *s2, size_t n)
+void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
 	unsigned char *stemp;
 

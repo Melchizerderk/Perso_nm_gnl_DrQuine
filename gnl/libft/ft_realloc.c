@@ -6,7 +6,7 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/03 16:23:36 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/05/13 17:37:23 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 13:59:50 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void *ft_realloc(void *ptr, size_t size)
+void	*ft_realloc(void *ptr, size_t size)
 {
 	void *newptr;
 

@@ -6,14 +6,14 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 18:48:03 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/05/13 17:35:06 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 13:58:57 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char *ft_strcpy(char *s1, const char *s2)
+char	*ft_strcpy(char *s1, const char *s2)
 {
 	int i;
 

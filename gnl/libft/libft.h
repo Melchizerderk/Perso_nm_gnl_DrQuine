@@ -6,7 +6,7 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 19:28:34 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/05/16 19:00:43 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:05:49 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 # include <unistd.h>
 # define INT_MIN (-INT_MAX - 1)
 # define INT_MAX 2147483647
-/*# define BUFF_SIZE 4096*/
+
+/*
+**	#define BUFF_SIZE 4096
+*/
 
 int					ft_atoi		(const char *str);
 char				*ft_itoa	(int	n);
@@ -126,5 +129,9 @@ int					ft_dprintf(int fd, const char *s, ...);
 int					ft_sizei(char *s);
 
 int					ft_findchar(char *str, char c);
-/*int					get_next_line(int fd, char **line);*/
+
+/*
+**	int					get_next_line(int fd, char **line);
+*/
+
 #endif

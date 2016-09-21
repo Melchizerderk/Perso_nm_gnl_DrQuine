@@ -6,14 +6,14 @@
 /*   By: bcrespin <bcrespin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 14:43:42 by bcrespin          #+#    #+#             */
-/*   Updated: 2014/05/13 17:38:42 by bcrespin         ###   ########.fr       */
+/*   Updated: 2016/07/20 14:00:34 by bcrespin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-void *ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*temp;
 
