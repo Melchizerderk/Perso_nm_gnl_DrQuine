@@ -26,6 +26,8 @@ char	*ft_keepreading(const int fd, int *i, int **readreturn)
 	while (*i == -1)
 	{
 		**readreturn = read(fd, temp, BUFF_SIZE);
+		if (**readreturn == -1 || **readreturn == 0)
+			break ;
 		buf = ft_strdup(ft_strjoin(buf, temp));
 		*i = ft_findchar(buf, '\n');
 	}
@@ -36,13 +38,15 @@ char	*ft_keepreading(const int fd, int *i, int **readreturn)
 char	*ft_tosaveornot(char **buf, int i, char *savedread)
 {
 	int d;
-
-	if (i == (int)ft_strlen(*buf))
+	
+	if (i == -1)
+		return (NULL);
+	else if (i == (int)ft_strlen(*buf))
 	{
 		*buf = ft_strsub(*buf, 0, ft_strlen(*buf) - 1);
 		return (NULL);
 	}
-	if (i < (int)ft_strlen(*buf))
+	else if (i < (int)ft_strlen(*buf))
 	{
 		if (savedread)
 			d = ft_strlen(savedread) + i;
@@ -59,7 +63,8 @@ char	*ft_tosaveornot(char **buf, int i, char *savedread)
 char	*ft_dupread(char ***savedread, int i)
 {
 	char	*buf;
-
+	
+	printf("test\n");
 	buf = ft_strdup(**savedread);
 	buf = ft_strsub(buf, 0, i - 1);
 	**savedread = ft_strsub(**savedread, i, ft_strlen(**savedread));
@@ -84,7 +89,7 @@ char	*ft_read(const int fd, char **savedread, int readstatus, int *readrtn)
 		if (i == -1)
 		{
 			buf = ft_strdup(ft_keepreading(fd, &i, &readrtn));
-			if (buf == NULL)
+			if (buf == NULL && (ft_strlen(*savedread) == 0))
 				return (NULL);
 			buf = ft_strjoin(*savedread, buf);
 			*savedread = ft_tosaveornot(&buf, i, *savedread);
